@@ -50,7 +50,7 @@ def main(inputs, count=0):
     for i in range(len(inputs)):
         inputs[i] = str(inputs[i])
 
-    producer = KafkaProducer(bootstrap_servers='hdp-m.c.mpcs53013-2016.internal:6667')
+    producer = KafkaProducer(##CONNECTION DETAILS TO KAFKA##)
     message = ','.join(inputs)
     message = bytes(message)
     producer.send('agolab', message)
