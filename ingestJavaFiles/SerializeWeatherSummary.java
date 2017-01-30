@@ -1,4 +1,4 @@
-package agolab.CrimeWeatherApp.IngestCrime;
+package agolab.CrimeWeatherApp.IngestWeather;
 
 import java.io.BufferedWriter;
 import java.io.DataOutputStream;
@@ -23,48 +23,51 @@ import org.apache.thrift.TSerializer;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TProtocol;
 
-import agolab.CrimeAndWeatherApp.crimeEvent.CrimeEvent;
+import edu.uchicago.mpcs53013.weatherSummary.WeatherSummary;
 
-public class SerializeCrimeEvent {
+public class SerializeWeatherSummary {
 	static TProtocol protocol;
 	public static void main(String[] args) {
 		try {
 			Configuration conf = new Configuration();
 			conf.addResource(new Path("/home/mpcs53013/hadoop/etc/hadoop/core-site.xml"));
 			conf.addResource("/home/mpcs53013/hadoop/etc/hadoop/hdfs-site.xml");
-			System.setProperty("hadoop.home.dir", "/");
 			final Configuration finalConf = new Configuration(conf);
+			final FileSystem fs = FileSystem.get(conf);
 			final TSerializer ser = new TSerializer(new TBinaryProtocol.Factory());
-			CrimeEventProcessor processor = new CrimeEventProcessor() {
+			WeatherSummaryProcessor processor = new WeatherSummaryProcessor() {
 				Map<Integer, SequenceFile.Writer> yearMap = new HashMap<Integer, SequenceFile.Writer>();
+				Pattern yearPattern = Pattern.compile("^\\d+-\\d+-(\\d+)");
 				
-				Writer getWriter(long yearlong) throws IOException {
-					int year = (int) yearlong;
-					// Chicago crime file is too small for vertical partitioning
-					// Use this code to execute vertical partitioning if segmented files are large
-					if (!yearMap.containsKey(1)) {
-					yearMap.put(1, 
-							SequenceFile.createWriter(finalConf,
-									SequenceFile.Writer.file(
-											new Path("/inputs/thriftCrime/crime_11-26-2016")),
-									SequenceFile.Writer.keyClass(IntWritable.class),
-									SequenceFile.Writer.valueClass(BytesWritable.class),
-									SequenceFile.Writer.compression(CompressionType.NONE)));
+				Writer getWriter(File file) throws IOException {
+					Matcher yearMatcher = yearPattern.matcher(file.getName());
+					if(!yearMatcher.find())
+						throw new IllegalArgumentException("Bad file name. Can't find year: " + file.getName());
+					int year = Integer.parseInt(yearMatcher.group(1));
+					if(!yearMap.containsKey(year)) {
+						yearMap.put(year, 
+								SequenceFile.createWriter(finalConf,
+										SequenceFile.Writer.file(
+												new Path("/agolab/inputs/thriftWeather/weather-" + Integer.toString(year))),
+										SequenceFile.Writer.keyClass(IntWritable.class),
+										SequenceFile.Writer.valueClass(BytesWritable.class),
+										SequenceFile.Writer.compression(CompressionType.NONE)));
 					}
-					return yearMap.get(1);
+					return yearMap.get(year);
 				}
 
 				@Override
-				void processCrimeEvent(CrimeEvent event, File file) throws IOException {
+				void processWeatherSummary(WeatherSummary summary, File file) throws IOException {
 					try {
-						getWriter(event.year).append(new IntWritable(1), new BytesWritable(ser.serialize(event)));;
+						getWriter(file).append(new IntWritable(1), new BytesWritable(ser.serialize(summary)));;
 					} catch (TException e) {
 						throw new IOException(e);
 					}
 				}
 			};
-			processor.processCrimeFile(args[0]);
+			processor.processNoaaDirectory(args[0]);
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -11,6 +11,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -57,22 +59,24 @@ public abstract class CrimeEventProcessor {
 	
 	void processCrimeFile(String filepath) throws IOException {
 		File file = new File(filepath);
-		CSVParser reader = new CSVParser(new FileReader(file),CSVFormat.EXCEL);
-		for (CSVRecord record : reader) {
-			processRecord(record, file);
+		CSVParser reader = new CSVParser(new FileReader(file),CSVFormat.EXCEL.withFirstRecordAsHeader());
+		Iterator<CSVRecord> iter = reader.iterator();
+		while (iter.hasNext()) {
+			processRecord(iter.next(), file);
 		}
+		reader.close();
 	}
 
 	CrimeEvent crimeFromRecord(CSVRecord record) throws NumberFormatException, MissingDataException {
 		DateTime date = DateTime.parse(record.get(2), 
-                DateTimeFormat.forPattern("dd/MM/yyyy h:mm:ss a"));
+                DateTimeFormat.forPattern("MM/dd/yyyy h:mm:ss a").withZoneUTC()); // Use UTC for DST Errors
 		CrimeEvent event 
-			= new CrimeEvent((long) Integer.parseInt(record.get(0)), (long) date.getYear(), (long) date.getMonthOfYear(), 
+			= new CrimeEvent((long) Double.parseDouble(record.get(0)), (long) date.getYear(), (long) date.getMonthOfYear(), 
 					(long) date.getDayOfMonth(), (long) date.getHourOfDay(), record.get(5), record.get(6),
 					"Chicago", "IL");
 		if (!record.get(19).equals("")) {
-			event.latitude = (long) Integer.parseInt(record.get(19));
-			event.longitude = (long) Integer.parseInt(record.get(20));
+			event.latitude = (long) Double.parseDouble(record.get(19));
+			event.longitude = (long) Double.parseDouble(record.get(20));
 		}
 		return event;
 	}
