@@ -25,7 +25,7 @@ def main(community, crime):
         'NARCOTICS':'Narcotics', 'THEFT': 'Thefts', 'ROBBERY': 'Robberies', 
         'OTHER':'Other'}
 
-    connection = Connection(host='hdp-m.c.mpcs53013-2016.internal', port='2056')
+    connection = Connection(##CONNECTION DETAILS##)
 
     comm_data = []
     yoy_data = []
