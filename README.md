@@ -24,6 +24,7 @@ You can see the Speed layer interface [here](http://104.197.248.161/agolab-crime
 - `thriftFiles` contains the Thrift schema for serialization
 - `pigFiles` contain all the Pig code for batch layer runs
 - `stormFiles` contains the code for the Serving layer Storm topology
+- `jars` contain the necessary jars and uberjars for java applications 
 - `mvn` and `pig` contain necessary open-source application jars for implementation
 
 ### Data
