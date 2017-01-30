@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+  <head>
+    <title>Chicago Crime</title>
+    <link type="text/css" rel="stylesheet" href="elegant-aero.css" />
+  </head>
+  <body style='background-image:URL("agolab-black-and-white-street.jpg");background-repeat:no-repeat;background-position:center top;-webkit-background-size:100%;-moz-background-size:100%;-o-background-size:100%;background-size: 100%;'>
+    <p style="margin-bottom:2cm"/>
+    <br>
+    <p align='center' style="font-size:20px;color:white;font-family:arial;font-weight:bold;border: 1px solid white;
+    margin-right:25%;margin-left:25%;margin-top:100px;margin-bottom:40px;background-color:gray;">Select a neighborhood to see the levels of crime in that community since 2011. Select a crime type to get the average weather conditions
+    for that crime since 2001.</p>
+    <script type="text/javascript">
+    function resizeIframe(obj){
+       obj.style.height = 0;
+       obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+    }
+    </script>
+    <form action="/cgi-bin/agolab-crime-report.py" style="width:300px;margin:0 auto;padding-top=200px;background:#FFFFFF" method="get" target="results_iframe" class="elegant-aero">
+      <label>
+	<span>Neighborhood:</span>
+    <select name="community">
+      <option value="empty">Select a Neighborhood</option>
+      <option value="UPTOWN">Uptown</option>
+      <option value="LOOP">The Loop</option>
+      <option value="HYDE PARK">Hyde Park</option>
+      <option value="LINCOLN PARK">Lincoln Park</option>
+      <option value="ENGLEWOOD">Englewood</option>
+      <option value="LOGAN SQUARE">Logan Square</option>
+      <option value="HUMBOLDT PARK">Humboldt Park</option>
+      <option value="NORTH LAWNDALE">North Lawndale</option>
+      <option value="LOWER WEST SIDE">Pilsen</option>
+    </select>
+      </label>
+      <label>
+	<span>Crime Type:</span>
+      <select name="crimeType">
+      <option value="empty">All Crimes</option>
+      <option value="HOMICIDE">Homicide</option>
+      <option value="ROBBERY">Robbery</option>
+      <option value="BATTERY">Battery</option>
+      <option value="ASSAULT">Assault</option>
+      <option value="BURGLARY">Burglary</option>
+      <option value="THEFT">General Theft</option>
+      <option value="NARCOTICS">Narcotics Crimes</option>
+    </select>
+	<span></span> <input  type="submit" value="Submit">
+      </label>
+    </form>
+    <p style="margin-bottom:2cm"/>
+    <iframe frameBorder="0" name="results_iframe" onload='resizeIframe(this)' style="display:block;width:70%;margin-left:auto;margin-right:auto"/>
+  </body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+  <head>
+    <title>Submit Crime Report</title>
+    <link type="text/css" rel="stylesheet" href="elegant-aero.css" />
+  </head>
+  <body style='background-image:URL("agolab-black-and-white-street.jpg");background-repeat:no-repeat;background-position:center top;-webkit-background-size:100%;-moz-background-size:100%;-o-background-size:100%;background-size: 100%;'>
+    <p style="margin-bottom:2cm"/>
+    <br>
+    <p align='center' style="font-size:20px;color:white;font-family:arial;font-weight:bold;border: 1px solid white;
+    margin-right:25%;margin-left:25%;margin-top:100px;margin-bottom:40px;background-color:gray;">Report a Crime</p>
+    <script type="text/javascript">
+    function resizeIframe(obj){
+       obj.style.height = 0;
+       obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+    }
+    </script>
+    <form action="/cgi-bin/agolab-submit-crime.py" style="width:60%;margin:0 auto;padding-top=200px;background:#FFFFFF" method="get" target="results_iframe" class="elegant-aero">
+      <label>
+	<span>Neighborhood:</span>
+    <select name="community">
+      <option value="UPTOWN">Uptown</option>
+      <option value="LOOP">The Loop</option>
+      <option value="HYDE PARK">Hyde Park</option>
+      <option value="LINCOLN PARK">Lincoln Park</option>
+      <option value="ENGLEWOOD">Englewood</option>
+      <option value="LOGAN SQUARE">Logan Square</option>
+      <option value="HUMBOLDT PARK">Humboldt Park</option>
+      <option value="NORTH LAWNDALE">North Lawndale</option>
+      <option value="LOWER WEST SIDE">Pilsen</option>
+    </select>
+      </label>
+      <label>
+	<span>Crime Type:</span>
+      <select name="crimeType">
+      <option value="HOMICIDE">Homicide</option>
+      <option value="ROBBERY">Robbery</option>
+      <option value="BATTERY">Battery</option>
+      <option value="ASSAULT">Assault</option>
+      <option value="BURGLARY">Burglary</option>
+      <option value="THEFT">General Theft</option>
+      <option value="NARCOTICS">Narcotics Crimes</option>
+      <option value="OTHER">Other</option>
+    </select>
+  <span>Month:</span>
+  <select name="month">
+      <option value="1">January</option>
+      <option value="2">February</option>
+      <option value="3">March</option>
+      <option value="4">April</option>
+      <option value="5">May</option>
+      <option value="6">June</option>
+      <option value="7">July</option>
+      <option value="8">August</option>
+      <option value="9">September</option>
+      <option value="10">October</option>
+      <option value="11">November</option>
+      <option value="12">December</option>
+    </select>
+  <span>Day:</span>
+  <input type="text" name="day" value="01"/>
+  <span>Year:</span>
+  <input type="text" name="year" value="2016"/>
+  <span>Hour:</span>
+  <input type="text" name="hour" value="12"/>
+  <span>Current Temperature in F:</span>
+  <input type="text" name="temperature" value="35"/>
+  <br><br>
+  <span>Current Weather:</span>
+  Fog <input type="checkbox" name="fog" value="1"/>
+  Rain <input type="checkbox" name="rain" value="1"/>
+  Snow <input type="checkbox" name="snow" value="1"/>
+  Hail <input type="checkbox" name="hail" value="1"/>
+  Thunder <input type="checkbox" name="thunder" value="1"/>
+  Tornado <input type="checkbox" name="tornado" value="1"/>
+  <br><br>
+	<span></span> <input  type="submit" value="Submit">
+      </label>
+    </form>
+    <p style="margin-bottom:2cm"/>
+    <iframe frameBorder="0" name="results_iframe" onload='resizeIframe(this)' style="display:block;width:70%;margin-left:auto;margin-right:auto"/>
+  </body>
+</html>
