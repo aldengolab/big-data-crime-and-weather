@@ -29,4 +29,4 @@ You can see the Speed layer interface [here](http://104.197.248.161/agolab-crime
 
 ### Data
 
-Data are from the [NOAA](ftp://ftp.ncdc.noaa.gov/pub/data/gsod/) and the [City of Chicago data portal](https://data.cityofchicago.org/?browseSearch=crime).
+Data are from the NOAA (ftp://ftp.ncdc.noaa.gov/pub/data/gsod/) and the [City of Chicago data portal](https://data.cityofchicago.org/?browseSearch=crime).
