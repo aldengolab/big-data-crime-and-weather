@@ -2,7 +2,7 @@
 A big data system to handle weather and crime data | Final Project MPCS 53013 Big Data
 
 ### Summary
-This repo implements a [lambda architecture](https://en.wikipedia.org/wiki/Lambda_architecture) for a large-scale application that takes realtime weather and crime data, ingests it, then automatically running views of the data for users. 
+This repo implements a [lambda architecture](https://en.wikipedia.org/wiki/Lambda_architecture) for a large-scale application that takes realtime weather and crime data, ingests it, then automatically running views of the data for users. I'm working on recovering the full implementation from the servers and will have the all the files, including raw Java files, here soon.
 
 ### Tools Implemented
 
