@@ -18,15 +18,15 @@ You can see the Speed layer interface [here](http://104.197.248.161/agolab-crime
 
 ### What's Here
 
-- set-up contains the necessary shell code for running various aspects of the system
-- frontEnd contains the Speed Layer for data access
-- ingestJavaFiles contains the ingestion code for HDFS serialization
-- thriftFiles contains the Thrift schema for serialization
-- pigFiles contain all the Pig code for batch layer runs
-- stormFiles contains the code for the Serving layer Storm topology
-- ingestFiles contains the jars for ingestion
-- mvn and pig contain necessary jars for implementation
+- `set-up` contains the necessary shell code for running various aspects of the system
+- `frontEnd` contains the Speed Layer for data access
+- `ingestJavaFiles` contains the ingestion code for HDFS serialization
+- `thriftFiles` contains the Thrift schema for serialization
+- `pigFiles` contain all the Pig code for batch layer runs
+- `stormFiles` contains the code for the Serving layer Storm topology
+- `ingestFiles` contains the jars for ingestion
+- `mvn` and `pig` contain necessary open-source application jars for implementation
 
 ### Data
 
-Data are from the [NOAA](ftp://ftp.ncdc.noaa.gov/pub/data/gsod/) and the [City of Chicago data portal](https://data.cityofchicago.org/?browseSearch=crime).
+Data are from the NOAA (ftp://ftp.ncdc.noaa.gov/pub/data/gsod/) and the [City of Chicago data portal](https://data.cityofchicago.org/?browseSearch=crime).
