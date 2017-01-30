@@ -1,5 +1,5 @@
-# crime-and-weather-system
-Final Project MPCS 53013 Big Data | A big data system to handle weather and crime data
+# big-data-crime-and-weather
+A big data system to handle weather and crime data | Final Project MPCS 53013 Big Data
 
 ### Summary
 This repo implements a [lambda architecture](https://en.wikipedia.org/wiki/Lambda_architecture) for a large-scale application that takes realtime weather and crime data, ingests it, then automatically running views of the data for users. 
