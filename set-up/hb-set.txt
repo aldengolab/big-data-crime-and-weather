@@ -1,0 +1,13 @@
+disable 'agolab_summed_crimes_by_community'
+drop 'agolab_summed_crimes_by_community'
+disable 'agolab_crime_weather_sums'
+drop 'agolab_crime_weather_sums'
+disable 'agolab_crime_year_sums'
+drop 'agolab_crime_year_sums'
+disable 'agolab_ave_chicago_weather'
+drop 'agolab_ave_chicago_weather'
+create 'agolab_summed_crimes_by_community', 'crime'
+create 'agolab_crime_weather_sums', 'weather'
+create 'agolab_crime_year_sums', 'count'
+create 'agolab_ave_chicago_weather', 'ave'
+exit
