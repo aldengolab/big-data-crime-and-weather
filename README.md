@@ -2,7 +2,7 @@
 A big data system to handle weather and crime data | Final Project MPCS 53013 Big Data
 
 ### Summary
-This repo implements a [lambda architecture](https://en.wikipedia.org/wiki/Lambda_architecture) for a large-scale application that takes realtime weather and crime data, ingests it, then automatically running views of the data for users. I'm working on recovering the full implementation from the servers and will have the all the files, including raw Java files, here soon.
+The code in this repo implements a [lambda architecture](https://en.wikipedia.org/wiki/Lambda_architecture) to feed a large-scale data application that takes weather and crime data, ingests it to HDFS, then automatically runs batch views of the data for user availability while also allowing for real-time updates on the fly.
 
 You can see the Speed layer interface [here](http://104.197.248.161/agolab-crime-reports.html). Fair warning, it's not very pretty because of the time constraints placed on this project -- the effort was, necessarily, on the back end functionality.
 
