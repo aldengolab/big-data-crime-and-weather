@@ -14,12 +14,19 @@ You can see the Speed layer interface [here](http://104.197.248.161/agolab-crime
 - Apache Thrift data structure for fact-based, schema-on read data storage
 - Apache Pig for Batch Layer pre-computed view construction
 - Apache HBase for pre-computed view storage, Serving Layer data storage, and data access in Speed Layer
-- Super basic HTML with Python back-end for Speed Layer data access
+- Basic HTML with Python back-end for Speed Layer data access
 
 ### What's Here
 
-- ingestFiles contains the jars for ingestion
-- javaFiles will contain the java files that are the core functionality of the ingestFiles jars (retrieving)
 - set-up contains the necessary shell code for running various aspects of the system
+- frontEnd contains the Speed Layer for data access
+- ingestJavaFiles contains the ingestion code for HDFS serialization
+- thriftFiles contains the Thrift schema for serialization
 - pigFiles contain all the Pig code for batch layer runs
+- stormFiles contains the code for the Serving layer Storm topology
+- ingestFiles contains the jars for ingestion
 - mvn and pig contain necessary jars for implementation
+
+### Data
+
+Data are from the [NOAA](ftp://ftp.ncdc.noaa.gov/pub/data/gsod/) and the [City of Chicago data portal](https://data.cityofchicago.org/?browseSearch=crime).
